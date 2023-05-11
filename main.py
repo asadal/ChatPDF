@@ -37,7 +37,7 @@ def app():
     if my_pdf is not None:
         # Load the PDF file
 #         pdf_file_string = decode_pdf(my_pdf)
-        loader = UnstructuredPDFLoader(pdf_file_string)
+        loader = UnstructuredPDFLoader(my_pdf.name)
         pages = loader.load_and_split()
 
         # Create an OpenAI embedding model
