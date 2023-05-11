@@ -44,6 +44,7 @@ def app():
         while answer != "n":
             # Get the user's question
             query = st.text_input("무엇이든 물어보세요.")
+            st.write("Your question:", query)
 
             # Get the relevant documents from the document searcher
             docs = docsearch.get_relevant_documents(query)
