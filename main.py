@@ -36,10 +36,10 @@ def app():
     # Upload a PDF file
     uploaded_file = st.file_uploader("Upload PDF", type=None)
     if uploaded_file is not None:
-        with tempfile.NamedTemporaryFile(delete=False) as tmp_file:
-            tmp_file.write(uploaded_file.getvalue())
-            file_path = tmp_file.name
-
+#         with tempfile.NamedTemporaryFile(delete=False) as tmp_file:
+#             tmp_file.write(uploaded_file.getvalue())
+#             file_path = tmp_file.name
+        file_path = uploaded_file.getvalue()
         # Load the PDF file
 #         pdf_file_string = decode_pdf(my_pdf)
         loader = UnstructuredPDFLoader(file_path)
