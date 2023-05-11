@@ -44,7 +44,7 @@ def app():
         answer = "y"
         while answer != "n":
             # Get the user's question
-            query = st.text_input("무엇이든 물어보세요.")
+            query = st.text_input("무엇이든 물어보세요.", key="query")
             
             if query != "":
                 # Get the relevant documents from the document searcher
