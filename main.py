@@ -8,18 +8,6 @@ import streamlit as st
 import tempfile
 import os
 
-# def decode_pdf(pdf_file):
-#     # Detect the encoding of the PDF file
-#     encoding = chardet.detect(pdf_file.read())['encoding']
-    
-#     # If the encoding is None, use UTF-8
-#     if encoding is None:
-#         encoding = 'utf-8'
-#     # Decode the PDF file
-#     pdf_file_string = pdf_file.read().decode(encoding)
-
-#     return pdf_file_string
-
 def app():
     st.set_page_config(page_title="Chat with PDF", page_icon="🗒️")
     st.image("https://cdn.iconscout.com/icon/free/png-256/free-chat-2130787-1794829.png", width=150)
@@ -56,7 +44,7 @@ def app():
         while answer == "y":
             # Get the user's question
             question = st.text_input("무엇이든 물어보세요.")
-            query = question
+            query = question.strip()
 
             # Get the relevant documents from the document searcher
             docs = docsearch.get_relevant_documents(query)
@@ -79,7 +67,6 @@ def app():
             else:
                 pass
         st.write("Cheers~! :-)")
-        st.end()
 
 if __name__ == "__main__":
     app()
