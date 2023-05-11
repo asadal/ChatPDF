@@ -7,17 +7,17 @@ from langchain.chains.question_answering import load_qa_chain
 import streamlit as st
 import chardet
 
-def decode_pdf(pdf_file):
-    # Detect the encoding of the PDF file
-    encoding = chardet.detect(pdf_file.read())['encoding']
+# def decode_pdf(pdf_file):
+#     # Detect the encoding of the PDF file
+#     encoding = chardet.detect(pdf_file.read())['encoding']
     
-    # If the encoding is None, use UTF-8
-    if encoding is None:
-        encoding = 'utf-8'
-    # Decode the PDF file
-    pdf_file_string = pdf_file.read().decode(encoding)
+#     # If the encoding is None, use UTF-8
+#     if encoding is None:
+#         encoding = 'utf-8'
+#     # Decode the PDF file
+#     pdf_file_string = pdf_file.read().decode(encoding)
 
-    return pdf_file_string
+#     return pdf_file_string
 
 def app():
     st.set_page_config(page_title="Chat with PDF", page_icon="🗒️")
@@ -36,7 +36,7 @@ def app():
     my_pdf = st.file_uploader("Upload PDF", type=["pdf"])
     if my_pdf is not None:
         # Load the PDF file
-        pdf_file_string = decode_pdf(my_pdf)
+#         pdf_file_string = decode_pdf(my_pdf)
         loader = UnstructuredPDFLoader(pdf_file_string)
         pages = loader.load_and_split()
 
