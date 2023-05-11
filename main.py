@@ -14,6 +14,7 @@ def app():
    
     my_pdf = st.file_uploader("Upload PDF", type=["pdf"])
     if my_pdf is not None:
+        openai_api_key = st.secrets['openai']["OPENAI_API_KEY"]
         loader = UnstructuredPDFLoader(my_pdf)
         pages = loader.load_and_split()
         embeddings = OpenAIEmbeddings()
