@@ -43,7 +43,7 @@ def app():
         answer = "y"
         while answer != "n":
             # Get the user's question
-            query = st.text_input("무엇이든 물어보세요.")
+            query = st.text_input("무엇이든 물어보세요.").strip()
 
             # Get the relevant documents from the document searcher
             docs = docsearch.get_relevant_documents(query)
@@ -59,9 +59,10 @@ def app():
 
             # Ask the user if they have any more questions
             proceed = st.write("더 궁금한 점이 있나요?")
-            if st.button("예, 물어볼게요."):
-                answer = 'y'
-            elif st.button("안, 물어볼게요."):
+            if st.button("예, 계속 물어볼게요."):
+                query.clear()
+                pass
+            elif st.button("안 물어볼게요."):
                 answer = 'n'
             else:
                 pass
