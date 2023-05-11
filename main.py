@@ -7,6 +7,7 @@ from langchain.chains.question_answering import load_qa_chain
 import streamlit as st
 import tempfile
 import os
+import time
 
 def app():
     st.set_page_config(page_title="Chat with PDF", page_icon="🗒️")
@@ -45,29 +46,33 @@ def app():
             # Get the user's question
             query = st.text_input("무엇이든 물어보세요.")
             st.write("Your question:", query)
+            
+            if query in not None:
+                # Get the relevant documents from the document searcher
+                docs = docsearch.get_relevant_documents(query)
 
-            # Get the relevant documents from the document searcher
-            docs = docsearch.get_relevant_documents(query)
+                # Create a question-answering chain
+                chain = load_qa_chain(OpenAI(temperature=0), chain_type="stuff")
 
-            # Create a question-answering chain
-            chain = load_qa_chain(OpenAI(temperature=0), chain_type="stuff")
+                # Run the question-answering chain
+                output = chain.run(input_documents=docs, question=query)
+    
+                # Write the output to the chat
+                st.write(output)
 
-            # Run the question-answering chain
-            output = chain.run(input_documents=docs, question=query)
-
-            # Write the output to the chat
-            st.write(output)
-
-            # Ask the user if they have any more questions
-            proceed = st.write("더 궁금한 점이 있나요?")
-            if st.button("예, 계속 물어볼게요."):
-                query.clear()
-                pass
-            elif st.button("안 물어볼게요."):
-                answer = 'n'
+                # Ask the user if they have any more questions
+                proceed = st.write("더 궁금한 점이 있나요?")
+                if st.button("예, 계속 물어볼게요."):
+                    query.clear()
+                    pass
+                elif st.button("안 물어볼게요."):
+                    answer = 'n'
+                else:
+                    pass
+            st.write("Cheers~! :-)")
             else:
-                pass
-        st.write("Cheers~! :-)")
+                time.sleep(20)
+                st.write("질문을 입력하세요.")
 
 if __name__ == "__main__":
     app()
