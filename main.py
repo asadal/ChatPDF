@@ -5,6 +5,7 @@ from langchain.document_loaders import UnstructuredPDFLoader
 from langchain.llms import OpenAI
 from langchain.chains.question_answering import load_qa_chain
 import streamlit as st
+import chardet
 
 def decode_pdf(pdf_file):
     # Detect the encoding of the PDF file
