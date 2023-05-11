@@ -5,7 +5,8 @@ from langchain.document_loaders import UnstructuredPDFLoader
 from langchain.llms import OpenAI
 from langchain.chains.question_answering import load_qa_chain
 import streamlit as st
-import chardet
+import tempfile
+import os
 
 # def decode_pdf(pdf_file):
 #     # Detect the encoding of the PDF file
@@ -33,11 +34,15 @@ def app():
         st.error("Did not find openai_api_key, please set it as an environment variable.")
 
     # Upload a PDF file
-    my_pdf = st.file_uploader("Upload PDF", type=["pdf"])
-    if my_pdf is not None:
+    uploaded_file = st.file_uploader("Upload PDF", type=None)
+    if uploaded_file is not None:
+        with tempfile.NamedTemporaryFile(delete=False) as tmp_file:
+            tmp_file.write(uploaded_file.getvalue())
+            file_path = tmp_file.name
+
         # Load the PDF file
 #         pdf_file_string = decode_pdf(my_pdf)
-        loader = UnstructuredPDFLoader(my_pdf.name)
+        loader = UnstructuredPDFLoader(file_path)
         pages = loader.load_and_split()
 
         # Create an OpenAI embedding model
