@@ -69,10 +69,11 @@ def app():
                     answer = 'n'
                 else:
                     pass
-            st.write("Cheers~! :-)")
-            else:
+            else:            
                 time.sleep(20)
                 st.write("질문을 입력하세요.")
 
+        st.write("Cheers~! :-)")
+                
 if __name__ == "__main__":
     app()
