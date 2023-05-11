@@ -6,6 +6,15 @@ from langchain.llms import OpenAI
 from langchain.chains.question_answering import load_qa_chain
 import streamlit as st
 
+def decode_pdf(pdf_file):
+    # Detect the encoding of the PDF file
+    encoding = chardet.detect(pdf_file.read())['encoding']
+
+    # Decode the PDF file
+    pdf_file_string = pdf_file.read().decode(encoding)
+
+    return pdf_file_string
+
 def app():
     st.set_page_config(page_title="Chat with PDF", page_icon="🗒️")
     st.image("https://cdn.iconscout.com/icon/free/png-256/free-chat-2130787-1794829.png", width=150)
@@ -23,7 +32,7 @@ def app():
     my_pdf = st.file_uploader("Upload PDF", type=["pdf"])
     if my_pdf is not None:
         # Load the PDF file
-        pdf_file_string = my_pdf.read().decode('utf-8')
+        pdf_file_string = decode_pdf(my_pdf)
         loader = UnstructuredPDFLoader(pdf_file_string)
         pages = loader.load_and_split()
 
