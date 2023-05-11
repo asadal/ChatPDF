@@ -27,7 +27,7 @@ def app():
         pages = loader.load_and_split()
 
         # Create an OpenAI embedding model
-        embeddings = OpenAIEmbeddings(openai_api_key)
+        embeddings = OpenAIEmbeddings(openai_api_key=openai_api_key)
 
         # Create a Chroma document searcher
         docsearch = Chroma.from_documents(pages, embeddings).as_retriever()
