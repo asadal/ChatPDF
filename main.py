@@ -4,7 +4,7 @@ from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.document_loaders import UnstructuredPDFLoader
 from langchain.llms import OpenAI
 from langchain.chains.question_answering import load_qa_chain
-from streamlit as st
+import streamlit as st
 
 def app():
     st.set_page_config(page_title=Chat with PDF, page_icon="📄")
