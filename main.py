@@ -10,7 +10,10 @@ import chardet
 def decode_pdf(pdf_file):
     # Detect the encoding of the PDF file
     encoding = chardet.detect(pdf_file.read())['encoding']
-
+    
+    # If the encoding is None, use UTF-8
+    if encoding is None:
+        encoding = 'utf-8'
     # Decode the PDF file
     pdf_file_string = pdf_file.read().decode(encoding)
 
