@@ -23,7 +23,7 @@ def app():
     my_pdf = st.file_uploader("Upload PDF", type=["pdf"])
     if my_pdf is not None:
         # Load the PDF file
-        pdf_file_string = my_pdf.read()
+        pdf_file_string = my_pdf.read().decode('utf-8')
         loader = UnstructuredPDFLoader(pdf_file_string)
         pages = loader.load_and_split()
 
