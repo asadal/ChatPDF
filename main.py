@@ -27,7 +27,7 @@ def app():
     st.subheader("Upload PDF and chat with it. Enjoy!")
 
     # Get the OpenAI API key from the environment
-    openai_api_key = os.environ["openai_api_key"]
+    openai_api_key = os.environ["OPENAI_API_KEY"]
 
     # If the OpenAI API key is not set, raise an error
     if openai_api_key is None:
@@ -46,7 +46,7 @@ def app():
         pages = loader.load_and_split()
 
         # Create an OpenAI embedding model
-        embeddings = OpenAIEmbeddings(openai_api_key=openai_api_key)
+        embeddings = OpenAIEmbeddings(openai_api_key)
 
         # Create a Chroma document searcher
         docsearch = Chroma.from_documents(pages, embeddings).as_retriever()
