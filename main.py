@@ -27,7 +27,7 @@ def app():
     st.subheader("Upload PDF and chat with it. Enjoy!")
 
     # Get the OpenAI API key from the environment
-    openai_api_key = st.secrets['openai']["OPENAI_API_KEY"]
+    openai_api_key = st.secrets["openai_api_key"]
 
     # If the OpenAI API key is not set, raise an error
     if openai_api_key is None:
