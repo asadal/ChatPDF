@@ -13,11 +13,11 @@ def app():
     st.subheader("Upload PDF and chat with it. Enjoy!")
 
     # Get the OpenAI API key from the environment
-    openai_api_key = st.secrets["OPENAI_API_KEY"]
+    openai_api_key = st.secrets['openai']["OPENAI_API_KEY"]
 
     # If the OpenAI API key is not set, raise an error
     if openai_api_key is None:
-        raise ValueError("Did not find openai_api_key, please set it as an environment variable.")
+        st.error("Did not find openai_api_key, please set it as an environment variable.")
 
     # Upload a PDF file
     my_pdf = st.file_uploader("Upload PDF", type=["pdf"])
