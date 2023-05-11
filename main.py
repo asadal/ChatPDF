@@ -7,7 +7,7 @@ from langchain.chains.question_answering import load_qa_chain
 import streamlit as st
 
 def app():
-    st.set_page_config(page_title="Chat with PDF", page_icon="📄")
+    st.set_page_config(page_title="Chat with PDF", page_icon="🗒️")
     st.image("https://cdn.iconscout.com/icon/free/png-256/free-chat-2130787-1794829.png", width=150)
     st.title("Chat with PDF")
     st.subheader("Upload PDF and chat with it. Enjoy!")
