@@ -23,7 +23,8 @@ def app():
     my_pdf = st.file_uploader("Upload PDF", type=["pdf"])
     if my_pdf is not None:
         # Load the PDF file
-        loader = UnstructuredPDFLoader(my_pdf)
+        pdf_file_string = my_pdf.read()
+        loader = UnstructuredPDFLoader(pdf_file_string)
         pages = loader.load_and_split()
 
         # Create an OpenAI embedding model
